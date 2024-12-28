@@ -28,7 +28,7 @@
       inherit system;
       specialArgs = {inherit inputs;};
       modules = [
-        ./disk-config.nix
+        ./disko-config.nix
         disko.nixosModules.disko
         ({pkgs, ...}: {
           boot.loader = {
