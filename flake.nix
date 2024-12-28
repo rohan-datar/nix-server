@@ -18,7 +18,7 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    hostName = "com.rdatar.media";
+    hostName = "home-media";
     rootAuthorizedKeys = [
       # This user can ssh using `ssh root@<ip>`
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFYDkyHobLUDOAkNqHxcOkVScdCclKG6m6Az7OT/NAd3"
