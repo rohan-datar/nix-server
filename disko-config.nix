@@ -8,7 +8,9 @@
   disko.devices = {
     disk = {
       main = {
+        # When using disko-install, we will overwrite this value from the commandline
         type = "disk";
+        device = "/dev/disk/by-id/some-disk-id";
         content = {
           type = "gpt";
           partitions = {
@@ -23,7 +25,7 @@
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [ "umask=0077" ];
+                mountOptions = ["umask=0077"];
               };
             };
             root = {
