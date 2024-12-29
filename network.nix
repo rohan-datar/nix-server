@@ -13,6 +13,8 @@
       address = "10.10.0.1";
       interface = "enp1s0";
     };
+
+    nameservers = ["10.10.0.1"];
   };
 
   services.openssh.enable = true;
