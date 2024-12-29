@@ -39,6 +39,9 @@ in {
     nix-index
     fd
     yq
+    lua
+    busybox
+    gnumake
   ];
 
   environment.shellAliases = {
