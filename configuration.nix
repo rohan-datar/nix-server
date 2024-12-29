@@ -29,6 +29,7 @@ in {
     git
     neovim
     inputs.agenix.packages.${system}.default
+    clang
   ];
 
   environment.shellAliases = {
