@@ -12,7 +12,12 @@
     efiSupport = true;
     efiInstallAsRemovable = true;
   };
-  services.openssh.enable = true;
+
+  # Set your time zone.
+  time.timeZone = "America/Chicago";
+
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_US.UTF-8";
 
   environment.systemPackages = with pkgs; [
     curl
@@ -24,6 +29,8 @@
     vim = "nvim";
   };
 
+  environment.variables.EDITOR = "neovim";
+
   system.autoUpgrade = {
     enable = true;
     flake = inputs.self.outPath;
@@ -34,6 +41,13 @@
     ];
     dates = "02:00";
     randomizedDelaySec = "45min";
+  };
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.rdatar = {
+    isNormalUser = true;
+    description = "Rohan Datar";
+    extraGroups = ["networkmanager" "wheel"];
   };
 
   system.stateVersion = "24.11";
