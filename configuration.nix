@@ -3,7 +3,12 @@
   pkgs,
   inputs,
   ...
-}: {
+}: let
+  sshKeys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFYDkyHobLUDOAkNqHxcOkVScdCclKG6m6Az7OT/NAd3"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB2wVTZEDwBCIvmTEiKj3pUmhOR+W9qknzbVTXhM25h6"
+  ];
+in {
   imports = [
     ./network.nix
     ./disk-config.nix
@@ -43,11 +48,20 @@
     randomizedDelaySec = "45min";
   };
 
+  services.openssh.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.rdatar = {
-    isNormalUser = true;
-    description = "Rohan Datar";
-    extraGroups = ["networkmanager" "wheel"];
+  users.users = {
+    rdatar = {
+      isNormalUser = true;
+      description = "Rohan Datar";
+      extraGroups = ["networkmanager" "wheel"];
+      openssh.authorizedKeys.keys = sshKeys;
+    };
+
+    root = {
+      openssh.authorizedKeys.keys = sshKeys;
+    };
   };
 
   system.stateVersion = "24.11";
