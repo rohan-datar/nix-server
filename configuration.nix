@@ -1,46 +1,40 @@
 {
-  modulesPath,
   lib,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
+    ./network.nix
     ./disk-config.nix
   ];
   boot.loader.grub = {
-    # no need to set devices, disko will add all devices that have a EF02 partition to the list already
-    # devices = [ ];
     efiSupport = true;
     efiInstallAsRemovable = true;
   };
   services.openssh.enable = true;
 
-  environment.systemPackages = map lib.lowPrio [
-    pkgs.curl
-    pkgs.gitMinimal
-    pkgs.neovim
+  environment.systemPackages = with pkgs; [
+    curl
+    git
+    neovim
   ];
 
-  networking = {
-    interfaces = {
-      enp1s0.ipv4.addresses = [
-        {
-          address = "10.10.1.11";
-          prefixLength = 19;
-        }
-      ];
-    };
-    defaultGateway = {
-      address = "10.10.0.1";
-      interface = "enp1s0";
-    };
+  environment.shellAliases = {
+    vim = "nvim";
   };
 
-  users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFYDkyHobLUDOAkNqHxcOkVScdCclKG6m6Az7OT/NAd3"
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB2wVTZEDwBCIvmTEiKj3pUmhOR+W9qknzbVTXhM25h6"
-  ];
+  system.autoUpgrade = {
+    enable = true;
+    flake = inputs.self.outPath;
+    flags = [
+      "--update-input"
+      "nixpkgs"
+      "-L" # print build logs
+    ];
+    dates = "02:00";
+    randomizedDelaySec = "45min";
+  };
 
   system.stateVersion = "24.11";
 }
