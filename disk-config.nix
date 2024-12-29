@@ -4,21 +4,22 @@
 #  imports = [ ./disko-config.nix ];
 #  disko.devices.disk.main.device = "/dev/sda";
 # }
-{
+{lib, ...}: {
   disko.devices = {
     disk = {
       main = {
-        # When using disko-install, we will overwrite this value from the commandline
         type = "disk";
-        device = "/dev/disk/by-id/some-disk-id";
+        device = lib.mkDefault "/dev/sda";
         content = {
           type = "gpt";
           partitions = {
             boot = {
+              name = "boot";
               size = "1M";
               type = "EF02"; # for grub MBR
             };
             ESP = {
+              name = "ESP";
               size = "1G";
               type = "EF00";
               content = {
@@ -29,6 +30,7 @@
               };
             };
             root = {
+              name = "root";
               size = "100%";
               content = {
                 type = "filesystem";
