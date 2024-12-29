@@ -31,6 +31,14 @@ in {
     inputs.agenix.packages.${system}.default
     clang
     fzf
+    ripgrep
+    shellcheck
+    tmux
+    wget
+    yamllint
+    nix-index
+    fd
+    yq
   ];
 
   environment.shellAliases = {
