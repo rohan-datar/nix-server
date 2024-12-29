@@ -30,6 +30,7 @@ in {
     neovim
     inputs.agenix.packages.${system}.default
     clang
+    fzf
   ];
 
   environment.shellAliases = {
