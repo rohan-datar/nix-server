@@ -9,4 +9,5 @@ let
   server-keys = system-keys ++ user-keys;
 in {
   "smbcredentials.age".publicKeys = server-keys;
+  "AirVPN-America-WG.conf.age".publicKeys = server-keys;
 }
