@@ -8,6 +8,13 @@
           prefixLength = 19;
         }
       ];
+
+      enp3s0.ipv4.addresses = [
+        {
+          address = "10.10.100.2";
+          prefixLength = 30;
+        }
+      ];
     };
     defaultGateway = {
       address = "10.10.0.1";
