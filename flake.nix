@@ -13,7 +13,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixarr.url = "github:rasmus-kirk/nixarr";
+    nixarr.url = "github:rohan-datar/nixarr";
   };
 
   outputs = {

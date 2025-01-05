@@ -1,4 +1,6 @@
 {
+pkgs,
+lib,
 config,
 ...
 }: {
@@ -10,6 +12,8 @@ config,
     "dotnet-sdk-wrapped-6.0.428"
   ];
   age.secrets.wgconf.file = ./secrets/AirVPN-America-WG.conf.age;
+
+  age.secrets.transCreds.file = ./secrets/transmissioncreds.json.age;
 
   nixarr = {
     enable = true;
@@ -23,10 +27,12 @@ config,
       # };
     };
 
-    mediaDir = /mnt/media;
+    mediaDir = "/mnt/media";
     # mediaUsers = [ "rdatar" ];
 
     jellyfin.enable = true;
+    jellyseerr.enable = true;
+    bazarr.enable = true;
     prowlarr.enable = true;
     radarr.enable = true;
     sonarr.enable = true;
@@ -38,4 +44,22 @@ config,
       peerPort = 21209;
     };
   };
+
+  # Hardware transcoding for jellyfin
+  # 1. enable vaapi on OS-level
+  nixpkgs.config.packageOverrides = pkgs: {
+    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+  };
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      intel-vaapi-driver
+      vaapiVdpau
+      intel-compute-runtime # OpenCL filter support (hardware tonemapping and subtitle burn-in)
+      vpl-gpu-rt # QSV on 11th gen or newer
+      intel-media-sdk # QSV up to 11th gen
+    ];
+  };
+
 }

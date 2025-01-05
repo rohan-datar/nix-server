@@ -92,15 +92,15 @@
         "vpnconfinement": "vpnconfinement"
       },
       "locked": {
-        "lastModified": 1733343637,
-        "narHash": "sha256-uCdhMDO/Fc9uluVhy+fcCDv7dxTWL97k2OurxGoqVNM=",
-        "owner": "rasmus-kirk",
+        "lastModified": 1736035703,
+        "narHash": "sha256-Y7pLotDj6maUUzTI3W4aYsmO6EvgoBLPy+uv/rwN9EI=",
+        "owner": "rohan-datar",
         "repo": "nixarr",
-        "rev": "3c80d221c6166c640aa214681680f9f2fbf11e4d",
+        "rev": "77682e0ae1140c5bebf53a22e05b8c28b01f6870",
         "type": "github"
       },
       "original": {
-        "owner": "rasmus-kirk",
+        "owner": "rohan-datar",
         "repo": "nixarr",
         "type": "github"
       }
@@ -123,11 +123,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1735669367,
-        "narHash": "sha256-tfYRbFhMOnYaM4ippqqid3BaLOXoFNdImrfBfCp4zn0=",
+        "lastModified": 1736061677,
+        "narHash": "sha256-DjkQPnkAfd7eB522PwnkGhOMuT9QVCZspDpJJYyOj60=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "edf04b75c13c2ac0e54df5ec5c543e300f76f1c9",
+        "rev": "cbd8ec4de4469333c82ff40d057350c30e9f7d36",
         "type": "github"
       },
       "original": {

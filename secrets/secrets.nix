@@ -10,4 +10,5 @@ let
 in {
   "smbcredentials.age".publicKeys = server-keys;
   "AirVPN-America-WG.conf.age".publicKeys = server-keys;
+  "transmissioncreds.json.age".publicKeys = server-keys;
 }
