@@ -2,7 +2,7 @@
   description = "Nix Server config flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -13,7 +13,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixarr.url = "github:rohan-datar/nixarr";
+    nixarr.url = "github:rasmus-kirk/nixarr";
   };
 
   outputs = {
