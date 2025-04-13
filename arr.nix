@@ -21,10 +21,6 @@ config,
     vpn = {
       enable = true;
       wgConf = config.age.secrets.wgconf.path;
-      # vpnTestService = {
-      #   enable = true;
-      #   port = 21209;
-      # };
     };
 
     mediaDir = "/mnt/media";
@@ -36,6 +32,7 @@ config,
     prowlarr.enable = true;
     radarr.enable = true;
     sonarr.enable = true;
+    readarr.enable = true;
 
     transmission = {
       enable = true;

@@ -12,6 +12,7 @@
 in {
   imports = [
     ./arr.nix
+    # ./calibre.nix
     ./network.nix
     ./disk-config.nix
   ];
@@ -27,6 +28,7 @@ in {
   i18n.defaultLocale = "en_US.UTF-8";
 
   environment.systemPackages = with pkgs; [
+    calibre
     curl
     git
     neovim
@@ -68,9 +70,16 @@ in {
   services.openssh.enable = true;
 
 
-  fileSystems."/mnt/media" = {
-    device = "10.10.100.1:/mnt/data-pool/data-share/media";
-    fsType = "nfs";
+  fileSystems = {
+    "/mnt/media" = {
+      device = "10.10.100.1:/mnt/data-pool/data-share/media";
+      fsType = "nfs";
+    };
+
+    "/mnt/Books" = {
+      device = "10.10.100.1:/mnt/data-pool/data-share/Books";
+      fsType = "nfs";
+    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
