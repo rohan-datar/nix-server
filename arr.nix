@@ -2,6 +2,7 @@
 pkgs,
 lib,
 config,
+nur,
 ...
 }: {
   # needed due to https://github.com/NixOS/nixpkgs/issues/360592
@@ -41,6 +42,7 @@ config,
       peerPort = 21209;
     };
   };
+
 
   # Hardware transcoding for jellyfin
   # 1. enable vaapi on OS-level
