@@ -32,17 +32,17 @@ config,
     };
 
     content = ''
-      HOMEPAGE_VAR_SONARR_KEY=$sonarrKey
-      HOMEPAGE_VAR_RADARR_KEY=$radarrKey
-      HOMEPAGE_VAR_PROWLARR_KEY=$prowlarrKey
-      HOMEPAGE_VAR_BAZARR_KEY=$bazarrKey
-      HOMEPAGE_VAR_JELLYFIN_KEY=$jellyfinKey
-      HOMEPAGE_VAR_JELLYSEERR_KEY=$jellyseerrKey
-      HOMEPAGE_VAR_TRUENAS_KEY=$truenasKey
-      HOMEPAGE_VAR_ADGUARD_PWD=$adguardPass
-      HOMEPAGE_VAR_OPNSENSE_USER=$opnsenseUser
-      HOMEPAGE_VAR_OPNSENSE_PWD=$opnsensePass
-      HOMEPAGE_VAR_TRANSMISSION_PWD=$transmissionPwd
+      HOMEPAGE_VAR_SONARR_KEY="$sonarrKey"
+      HOMEPAGE_VAR_RADARR_KEY="$radarrKey"
+      HOMEPAGE_VAR_PROWLARR_KEY="$prowlarrKey"
+      HOMEPAGE_VAR_BAZARR_KEY="$bazarrKey"
+      HOMEPAGE_VAR_JELLYFIN_KEY="$jellyfinKey"
+      HOMEPAGE_VAR_JELLYSEERR_KEY="$jellyseerrKey"
+      HOMEPAGE_VAR_TRUENAS_KEY="$truenasKey"
+      HOMEPAGE_VAR_ADGUARD_PWD="$adguardPass"
+      HOMEPAGE_VAR_OPNSENSE_USER="$opnsenseUser"
+      HOMEPAGE_VAR_OPNSENSE_PWD="$opnsensePass"
+      HOMEPAGE_VAR_TRANSMISSION_PWD="$transmissionPwd"
     '';
   };
   services.homepage-dashboard = {
@@ -52,16 +52,43 @@ config,
     allowedHosts = "10.10.1.11:8082,home.rdatar.com";
     settings = {
       title = "Homelab";
-      headerStyle = "clean";
+      headerStyle = "boxed";
       color = "slate";
-    };
+   };
+    widgets = [
+      {
+        datetime = {
+          format = {
+            timeStyle = "short";
+            dateStyle = "short";
+            hour12 = "true";
+          };
+        };
+      }
+      {
+        search = {
+          provider = "custom";
+          url = "https://startpage.com/sp/search?q=";
+          target = "_blank";
+          suggestionUrl = "https://www.startpage.com/osuggestions?q=";
+          showSearchSuggestions = true;
+        };
+      }
+      {
+        resources = {
+          cpu = true;
+          disk = "/";
+          memory = true;
+        };
+      }
+    ];
     services = [
       {
         "Arrs" = [
           {
             "Sonarr" = {
               icon = "sonarr.png";
-              description = "tv arr";
+
               href = "https://tv.rdatar.com/";
               widgets = [
                 {
@@ -75,7 +102,7 @@ config,
           {
             "Radarr" = {
               icon = "radarr.png";
-              description = "movie arr";
+
               href = "https://movie.rdatar.com/";
               widgets = [
                 {
@@ -89,22 +116,20 @@ config,
           {
             "Transmission" = {
               icon = "transmission.png";
-              description = "torrents";
               href = "https://torrent.rdatar.com/";
-              # widgets = [
-              #   {
-              #     type = "transmission";
-              #     url = "http://localhost:9091/";
-              #     username = "rdatar";
-              #     password = "{{HOMEPAGE_VAR_TRANSMISSION_PWD}}";
-              #   }
-              # ];
+              widgets = [
+                {
+                  type = "transmission";
+                  url = "http://localhost:9091/transmission/rpc";
+                  username = "rdatar";
+                  password = "{{HOMEPAGE_VAR_TRANSMISSION_PWD}}";
+                }
+              ];
             };
           }
           {
             "Prowlarr" = {
               icon = "prowlarr.png";
-              description = "tracker arr";
               href = "http://10.10.1.11:9696/";
               widgets = [
                 {
@@ -118,7 +143,6 @@ config,
           {
             "Bazarr" = {
               icon = "bazarr.png";
-              description = "subtitles arr";
               href = "http://10.10.1.11:6767/";
               widgets = [
                 {
@@ -136,29 +160,27 @@ config,
           {
             "Jellyfin" = {
               icon = "jellyfin.png";
-              description = "jellyfin";
               href = "https://watch.rdatar.com/";
-              # widgets = [
-              #   {
-              #     type = "jellyfin";
-              #     url = "http://localhost:8096/";
-              #     key = "{{HOMEPAGE_VAR_JELLYFIN_KEY}}";
-              #   }
-              # ];
+              widgets = [
+                {
+                  type = "jellyfin";
+                  url = "http://localhost:8096/";
+                  key = "{{HOMEPAGE_VAR_JELLYFIN_KEY}}";
+                }
+              ];
             };
           }
           {
             "Jellyseerr" = {
               icon = "jellyseerr.png";
-              description = "jellyseerr";
               href = "https://lib.rdatar.com/";
-              # widgets = [
-              #   {
-              #     type = "jellyseerr";
-              #     url = "http://localhost:5055/";
-              #     key = "{{HOMEPAGE_VAR_JELLYSEERR_KEY}}";
-              #   }
-              # ];
+              widgets = [
+                {
+                  type = "jellyseerr";
+                  url = "http://localhost:5055/";
+                  key = "{{HOMEPAGE_VAR_JELLYSEERR_KEY}}";
+                }
+              ];
             };
           }
         ];
@@ -168,41 +190,52 @@ config,
           {
             "TrueNAS" = {
               icon = "truenas.png";
-              description = "truenas";
               href = "https://store.rdatar.com/";
-              # widgets = [
-              #   {
-              #     type = "truenas";
-              #     url = "http://10.10.1.10/";
-              #     key = "{{HOMEPAGE_VAR_TRUENAS_KEY}}";
-              #   }
-              # ];
+              widgets = [
+                {
+                  type = "truenas";
+                  url = "http://10.10.1.10/";
+                  key = "{{HOMEPAGE_VAR_TRUENAS_KEY}}";
+                }
+              ];
             };
           }
           {
             "Adguard" = {
-              icon = "adguardhome.png";
-              description = "adguard";
+              icon = "adguard-home.png";
               href = "https://dns.rdatar.com/";
-              # widgets = [
-              #   {
-              #     type = "adguard";
-              #     url = "http://10.10.0.1:8080/";
-              #     username = "rdatar";
-              #     password = "{{HOMEPAGE_VAR_ADGUARD_PWD}}";
-              #   }
-              # ];
+              widgets = [
+                {
+                  type = "adguard";
+                  url = "http://10.10.0.1:8080/";
+                  username = "rdatar";
+                  password = "{{HOMEPAGE_VAR_ADGUARD_PWD}}";
+                }
+              ];
             };
           }
           {
             "Opnsense" = {
               icon = "opnsense.png";
-              description = "opnsense";
               href = "https://opnsense.localdomain:8443/";
+              widgets = [
+                {
+                  type = "opnsense";
+                  url = "https://10.10.0.1:8443/";
+                  username = "{{HOMEPAGE_VAR_OPNSENSE_USER}}";
+                  password = "{{HOMEPAGE_VAR_OPNSENSE_PWD}}";
+                }
+              ];
+            };
+          }
+          {
+            "OpenWRT" = {
+              icon = "openwrt.png";
+              href = "https://10.10.0.2/";
               # widgets = [
               #   {
               #     type = "opnsense";
-              #     url = "http://10.10.0.1:8443/";
+              #     url = "https://10.10.0.1:8443/";
               #     username = "{{HOMEPAGE_VAR_OPNSENSE_USER}}";
               #     password = "{{HOMEPAGE_VAR_OPNSENSE_PWD}}";
               #   }
