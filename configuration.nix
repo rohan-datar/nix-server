@@ -13,6 +13,7 @@ in {
   imports = [
     ./arr.nix
     # ./calibre.nix
+    ./homepage.nix
     ./network.nix
     ./disk-config.nix
   ];

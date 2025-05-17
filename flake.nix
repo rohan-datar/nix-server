@@ -13,6 +13,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    agenix-template.url = "github:jhillyerd/agenix-template/1.0.0";
 
     nixarr.url = "github:rasmus-kirk/nixarr";
   };
@@ -23,6 +24,7 @@
     disko,
     nixarr,
     agenix,
+    agenix-template,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -37,6 +39,7 @@
         ./configuration.nix
         ./hardware-configuration.nix
         agenix.nixosModules.default
+        agenix-template.nixosModules.default
       ];
     };
   };

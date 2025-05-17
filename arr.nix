@@ -2,7 +2,6 @@
 pkgs,
 lib,
 config,
-nur,
 ...
 }: {
   # needed due to https://github.com/NixOS/nixpkgs/issues/360592
@@ -33,13 +32,13 @@ nur,
     prowlarr.enable = true;
     radarr.enable = true;
     sonarr.enable = true;
-    readarr.enable = true;
 
     transmission = {
       enable = true;
       flood.enable = true;
       vpn.enable = true;
       peerPort = 21209;
+      credentialsFile = config.age.secrets.transCreds.path;
     };
   };
 

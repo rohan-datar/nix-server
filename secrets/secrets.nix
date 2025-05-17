@@ -11,4 +11,15 @@ in {
   "smbcredentials.age".publicKeys = server-keys;
   "AirVPN-America-WG.conf.age".publicKeys = server-keys;
   "transmissioncreds.json.age".publicKeys = server-keys;
+  "transmissionPwd.age".publicKeys = server-keys;
+  "sonarrApiKey.age".publicKeys = server-keys;
+  "radarrApiKey.age".publicKeys = server-keys;
+  "prowlarrApiKey.age".publicKeys = server-keys;
+  "bazarrApiKey.age".publicKeys = server-keys;
+  "jellyfinApiKey.age".publicKeys = server-keys;
+  "jellyseerrApiKey.age".publicKeys = server-keys;
+  "truenasApiKey.age".publicKeys = server-keys;
+  "opnsenseUser.age".publicKeys = server-keys;
+  "opnsensePass.age".publicKeys = server-keys;
+  "adguardPass.age".publicKeys = server-keys;
 }
