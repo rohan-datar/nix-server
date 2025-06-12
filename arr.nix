@@ -24,7 +24,6 @@ config,
     };
 
     mediaDir = "/mnt/media";
-    # mediaUsers = [ "rdatar" ];
 
     jellyfin.enable = true;
     jellyseerr.enable = true;
@@ -39,7 +38,8 @@ config,
       vpn.enable = true;
       peerPort = 21209;
       credentialsFile = config.age.secrets.transCreds.path;
-    };
+      extraAllowedIps = [ "10.10.*" ];
+   };
   };
 
 

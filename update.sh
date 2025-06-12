@@ -12,6 +12,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   sudo nixos-rebuild switch --flake ~/nix#home-media
   # Get current generation metadata
   current=$(nixos-rebuild list-generations | grep current)
+else
   echo "$OSTYPE not supported"
   exit 1
 fi
