@@ -48,6 +48,7 @@ in {
     busybox
     gnumake
     cifs-utils
+    nh
   ];
 
   environment.shellAliases = {

@@ -38,7 +38,6 @@ config,
       vpn.enable = true;
       peerPort = 21209;
       credentialsFile = config.age.secrets.transCreds.path;
-      extraAllowedIps = [ "10.10.*" ];
    };
   };
 
