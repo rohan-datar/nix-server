@@ -174,13 +174,13 @@ config,
             "Jellyseerr" = {
               icon = "jellyseerr.png";
               href = "https://lib.rdatar.com/";
-              widgets = [
-                {
-                  type = "jellyseerr";
-                  url = "http://localhost:5055/";
-                  key = "{{HOMEPAGE_VAR_JELLYSEERR_KEY}}";
-                }
-              ];
+              # widgets = [
+              #   {
+              #     type = "jellyseerr";
+              #     url = "http://localhost:5055/";
+              #     key = "{{HOMEPAGE_VAR_JELLYSEERR_KEY}}";
+              #   }
+              # ];
             };
           }
         ];
@@ -232,14 +232,6 @@ config,
             "OpenWRT" = {
               icon = "openwrt.png";
               href = "https://10.10.0.2/";
-              # widgets = [
-              #   {
-              #     type = "opnsense";
-              #     url = "https://10.10.0.1:8443/";
-              #     username = "{{HOMEPAGE_VAR_OPNSENSE_USER}}";
-              #     password = "{{HOMEPAGE_VAR_OPNSENSE_PWD}}";
-              #   }
-              # ];
             };
           }
         ];
