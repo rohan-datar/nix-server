@@ -21,6 +21,7 @@ config,
     vpn = {
       enable = true;
       wgConf = config.age.secrets.wgconf.path;
+      accessibleFrom = [ "10.10.0.1/19" ];
     };
 
     mediaDir = "/mnt/media";
