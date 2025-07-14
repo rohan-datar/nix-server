@@ -78,10 +78,10 @@ in {
       fsType = "nfs";
     };
 
-    "/mnt/Books" = {
-      device = "10.10.100.1:/mnt/data-pool/data-share/Books";
-      fsType = "nfs";
-    };
+    # "/mnt/Books" = {
+    #   device = "10.10.100.1:/mnt/data-pool/data-share/Books";
+    #   fsType = "nfs";
+    # };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -97,6 +97,17 @@ in {
       openssh.authorizedKeys.keys = sshKeys;
     };
   };
+
+  programs.nh = {
+    enable = true;
+    clean = {
+      enable = true;
+      extraArgs = "--keep-since 7d --keep 5";
+    };
+
+    flake = "/home/rdatar/nix";
+  };
+
 
   nix.settings = {
     warn-dirty = false;
