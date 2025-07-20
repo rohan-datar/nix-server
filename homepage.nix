@@ -121,7 +121,7 @@ config,
                 {
                   type = "transmission";
                   url = "http://localhost:9091/transmission/rpc";
-                  username = "rdatar";
+                  username = "";
                   password = "{{HOMEPAGE_VAR_TRANSMISSION_PWD}}";
                 }
               ];
@@ -174,13 +174,13 @@ config,
             "Jellyseerr" = {
               icon = "jellyseerr.png";
               href = "https://lib.rdatar.com/";
-              # widgets = [
-              #   {
-              #     type = "jellyseerr";
-              #     url = "http://localhost:5055/";
-              #     key = "{{HOMEPAGE_VAR_JELLYSEERR_KEY}}";
-              #   }
-              # ];
+              widgets = [
+                {
+                  type = "jellyseerr";
+                  url = "http://localhost:5055/";
+                  key = "{{HOMEPAGE_VAR_JELLYSEERR_KEY}}";
+                }
+              ];
             };
           }
         ];

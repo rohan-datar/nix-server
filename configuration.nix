@@ -71,6 +71,11 @@ in {
 
   services.openssh.enable = true;
 
+  age.identityPaths = [
+     "/etc/ssh/ssh_host_ed25519_key"
+     "/etc/ssh/ssh_host_rsa_key"
+  ];
+
 
   fileSystems = {
     "/mnt/media" = {
@@ -108,6 +113,7 @@ in {
     flake = "/home/rdatar/nix";
   };
 
+  nixpkgs.config.allowUnfree = true;
 
   nix.settings = {
     warn-dirty = false;

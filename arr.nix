@@ -4,16 +4,8 @@ lib,
 config,
 ...
 }: {
-  # needed due to https://github.com/NixOS/nixpkgs/issues/360592
-  nixpkgs.config.permittedInsecurePackages = [
-    "aspnetcore-runtime-6.0.36"
-    "aspnetcore-runtime-wrapped-6.0.36"
-    "dotnet-sdk-6.0.428"
-    "dotnet-sdk-wrapped-6.0.428"
-  ];
   age.secrets.wgconf.file = ./secrets/AirVPN-America-WG.conf.age;
 
-  age.secrets.transCreds.file = ./secrets/transmissioncreds.json.age;
 
   nixarr = {
     enable = true;
@@ -38,16 +30,16 @@ config,
       flood.enable = true;
       vpn.enable = true;
       peerPort = 21209;
-      credentialsFile = config.age.secrets.transCreds.path;
    };
   };
 
 
-  # Hardware transcoding for jellyfin
-  # 1. enable vaapi on OS-level
   nixpkgs.config.packageOverrides = pkgs: {
-    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+    # Only set this if using intel-vaapi-driver
+    intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
   };
+  systemd.services.jellyfin.environment.LIBVA_DRIVER_NAME = "iHD"; # Or "i965" if using older driver
+  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };      # Same here
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
@@ -59,5 +51,4 @@ config,
       intel-media-sdk # QSV up to 11th gen
     ];
   };
-
 }
