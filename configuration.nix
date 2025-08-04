@@ -49,6 +49,7 @@ in {
     gnumake
     cifs-utils
     nh
+    ghostty.terminfo
   ];
 
   environment.shellAliases = {
