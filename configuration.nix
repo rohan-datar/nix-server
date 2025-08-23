@@ -114,6 +114,10 @@ in {
     flake = "/home/rdatar/nix";
   };
 
+  # virtualisation.libvirtd.enable = true;
+  # boot.kernelModules = [ "kvm-intel"];
+
+
   nixpkgs.config.allowUnfree = true;
 
   nix.settings = {
