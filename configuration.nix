@@ -16,6 +16,7 @@ in {
     ./homepage.nix
     ./network.nix
     ./disk-config.nix
+    # ./home-assistant.nix
   ];
   boot.loader.grub = {
     efiSupport = true;
@@ -103,6 +104,17 @@ in {
       openssh.authorizedKeys.keys = sshKeys;
     };
   };
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
+  services.blueman = {
+    enable = true;
+  };
+
+  boot.kernelModules = [ "btusb" ];
+
 
   programs.nh = {
     enable = true;
