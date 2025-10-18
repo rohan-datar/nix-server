@@ -16,7 +16,7 @@ in {
     ./homepage.nix
     ./network.nix
     ./disk-config.nix
-    # ./home-assistant.nix
+    ./home-assistant.nix
   ];
   boot.loader.grub = {
     efiSupport = true;
